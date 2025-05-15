@@ -1,7 +1,10 @@
 package com.example.ApiClassRoom.models;
 
 import com.example.ApiClassRoom.helpers.UserType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -29,16 +32,21 @@ public class User {
     @Column(nullable = false)
     private UserType userType;
 
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Student> students;
+
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, String phone, UserType userType) {
+    public User(Integer id, String name, String email, String password, String phone, UserType userType, List<Student> students) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.userType = userType;
+        this.students = students;
     }
 
     public Integer getId() {
@@ -87,5 +95,13 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

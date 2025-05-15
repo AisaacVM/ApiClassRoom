@@ -26,6 +26,10 @@ public class Student {
     private String address;
 
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @OneToMany(mappedBy = "student")
     @JsonManagedReference
     private List<Registration> registrations;
@@ -41,8 +45,9 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer id, Integer degree, LocalDateTime birthDay, String address, List<Registration> registrations) {
+    public Student(Integer id,User user , Integer degree, LocalDateTime birthDay, String address, List<Registration> registrations) {
         this.id = id;
+        this.user = user;
         this.degree = degree;
         this.birthDay = birthDay;
         this.address = address;
@@ -81,6 +86,36 @@ public class Student {
         this.address = address;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Registration> getRegistrations() {
+        return registrations;
+    }
+
+    public void setRegistrations(List<Registration> registrations) {
+        this.registrations = registrations;
+    }
+
+    public List<Grades> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grades> grades) {
+        this.grades = grades;
+    }
+
+    public List<Attendance> getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(List<Attendance> attendance) {
+        this.attendance = attendance;
+    }
 }
 

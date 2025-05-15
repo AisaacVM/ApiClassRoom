@@ -20,21 +20,23 @@ import java.time.LocalDateTime;
     private LocalDateTime registrationDate;
 
     @ManyToOne
-    @JoinColumn(name = "fk_student", referencedColumnName = "id")
+    @JoinColumn(name = "fk_student", referencedColumnName = "student_id", nullable = false)
     @JsonBackReference
     Student student;
 
     @ManyToOne
-    @JoinColumn(name= "fk-course", referencedColumnName = "id")
+    @JoinColumn(name= "fk-course", referencedColumnName = "course_id", nullable = false)
     @JsonBackReference
     Course course;
 
     public Registration() {
     }
 
-    public Registration(Integer id, LocalDateTime registrationDate) {
+    public Registration(Integer id, LocalDateTime registrationDate, Student student, Course course) {
         this.id = id;
         this.registrationDate = registrationDate;
+        this.student = student;
+        this.course = course;
     }
 
     public Integer getId() {
@@ -51,5 +53,21 @@ import java.time.LocalDateTime;
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

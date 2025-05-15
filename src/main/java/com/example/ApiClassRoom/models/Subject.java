@@ -23,9 +23,9 @@ import java.util.List;
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "fk_course", referencedColumnName = "id")
+    @JoinColumn(name = "fk_course", referencedColumnName = "course_id")
     @JsonBackReference
-    Course course;
+    private Course course;
 
     @OneToMany(mappedBy = "subject")
     @JsonManagedReference
@@ -35,9 +35,11 @@ import java.util.List;
     public Subject() {
     }
 
-    public Subject(Integer id, String name) {
+    public Subject(Integer id, String name, Course course, List<Grades> grades) {
         this.id = id;
         this.name = name;
+        this.course = course;
+        this.grades = grades;
     }
 
     public Integer getId() {
@@ -54,5 +56,21 @@ import java.util.List;
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public List<Grades> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grades> grades) {
+        this.grades = grades;
     }
 }

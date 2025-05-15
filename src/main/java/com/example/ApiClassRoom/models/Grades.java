@@ -3,8 +3,11 @@ package com.example.ApiClassRoom.models;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name= "grades")
 public class Grades {
     @Id
 
@@ -21,11 +24,11 @@ public class Grades {
     private LocalDateTime exam;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "subject_id", referencedColumnName = "subject_id", nullable = false)
     private Subject subject;
 
     public Grades() {
@@ -59,5 +62,21 @@ public class Grades {
 
     public void setExam(LocalDateTime exam) {
         this.exam = exam;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }
