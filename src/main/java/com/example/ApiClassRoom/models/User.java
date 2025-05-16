@@ -1,6 +1,7 @@
 package com.example.ApiClassRoom.models;
-
+import com.example.ApiClassRoom.models.Teacher;
 import com.example.ApiClassRoom.helpers.UserType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -29,17 +30,21 @@ public class User {
     @Column(length = 20)
     private String phone;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserType userType;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-student")
     private List<Student> students;
+
+    @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "teacher-user")
+    private Teacher teacher;
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, String phone, UserType userType, List<Student> students) {
+    public User(Integer id, String name, String email, String password, String phone, UserType userType, List<Student> students, Teacher teacher) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -47,6 +52,7 @@ public class User {
         this.phone = phone;
         this.userType = userType;
         this.students = students;
+        this.teacher = teacher;
     }
 
     public Integer getId() {
@@ -103,5 +109,13 @@ public class User {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

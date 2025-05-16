@@ -1,5 +1,6 @@
 package com.example.ApiClassRoom.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -28,6 +29,7 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference(value = "user-student")
     private User user;
 
     @OneToMany(mappedBy = "student")

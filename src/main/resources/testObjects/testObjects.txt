@@ -1,0 +1,24 @@
+/Users
+    "name" : "Isaac Vélez Murillo",
+    "email" : "isaacvm43@gmail.com",
+    "password" : "isaac12345",
+    "phone" :"3137657650",
+    "userType" :"STUDENT",
+
+/Students
+
+/Teachers
+    "skill": "Ingenier",
+    "user": {
+    "id": 1
+    }
+
+/Subject
+
+/Registration
+
+/Grade
+
+/Course
+
+/Attendance
