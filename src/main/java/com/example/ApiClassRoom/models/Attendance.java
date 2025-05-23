@@ -1,6 +1,7 @@
 package com.example.ApiClassRoom.models;
 
 import com.example.ApiClassRoom.helpers.State;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -25,10 +26,12 @@ public class Attendance {
 
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
+    @JsonBackReference(value = "student-attendance")
     private Student student;
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
+    @JsonBackReference(value = "attendance-course")
     private Course course;
     public Attendance() {
     }

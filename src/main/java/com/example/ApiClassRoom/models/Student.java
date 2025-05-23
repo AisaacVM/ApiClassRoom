@@ -33,15 +33,15 @@ public class Student {
     private User user;
 
     @OneToMany(mappedBy = "student")
-    @JsonManagedReference
+    @JsonManagedReference(value="registration-student")
     private List<Registration> registrations;
 
     @OneToMany(mappedBy = "student")
-    @JsonManagedReference
+    @JsonManagedReference(value = "grades-student")
     private List<Grades> grades;
 
     @OneToMany(mappedBy = "student")
-    @JsonManagedReference
+    @JsonManagedReference(value = "student-attendance")
     private List<Attendance> attendance;
 
     public Student() {

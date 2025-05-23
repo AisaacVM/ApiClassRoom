@@ -1,5 +1,6 @@
 package com.example.ApiClassRoom.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -25,10 +26,12 @@ public class Grades {
 
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
+    @JsonBackReference(value = "grades-student")
     private Student student;
 
     @ManyToOne
     @JoinColumn(name = "subject_id", referencedColumnName = "subject_id", nullable = false)
+    @JsonBackReference(value = "grades-subject")
     private Subject subject;
 
     public Grades() {

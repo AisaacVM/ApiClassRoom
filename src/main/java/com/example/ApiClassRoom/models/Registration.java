@@ -21,12 +21,12 @@ import java.time.LocalDateTime;
 
     @ManyToOne
     @JoinColumn(name = "fk_student", referencedColumnName = "student_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value="registration-student")
     Student student;
 
     @ManyToOne
     @JoinColumn(name= "fk-course", referencedColumnName = "course_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value= "registration-course")
     Course course;
 
     public Registration() {

@@ -24,11 +24,11 @@ import java.util.List;
 
     @ManyToOne
     @JoinColumn(name = "fk_course", referencedColumnName = "course_id")
-    @JsonBackReference
+    @JsonBackReference(value="subjects-course")
     private Course course;
 
     @OneToMany(mappedBy = "subject")
-    @JsonManagedReference
+    @JsonManagedReference(value = "grades-subject")
     private List<Grades> grades;
 
 
